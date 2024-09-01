@@ -23,98 +23,48 @@
     <button @click="clickRight">👉</button>
   </div>
 
-  <div class="calendarInfo flex fdc aic">
-    <div class="inputs flex aic jcc">
-      <label for="labelMonth">Month</label>
-      <input v-model="monthValue" type="text" id="month" />
-      <label for="labelMonth">Year</label>
-      <input v-model="yearValue" type="text" id="year" />
-    </div>
-    <button @click="generateCalendarFunc" class="generateCalendar">Generate</button>
-    <p id="monthAndYear">{{ searchDateRes }}</p>
-
-    <table id="calendarTable">
-    <thead>
-      <tr>
-        <th>MON</th>
-        <th>TUE</th>
-        <th>WED</th>
-        <th>THU</th>
-        <th>FRI</th>
-        <th>SUT</th>
-        <th>SUN</th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <tr>
-        <td></td>
-
-      </tr>
-      
-      <tr>
-        <td></td>
-      </tr>
-
-      <tr>
-        <td></td>
-      </tr>
-
-    </tbody>
-  </table>
-  </div>
+<CalendarTable></CalendarTable>
   
 </template>
 
 <script setup lang="ts">
-import HeaderComponent from "./components/HeaderComponent.vue"
-import TodoElement from "./components/TodoElement.vue"
-import { ref } from "vue"
-const random = ref(Math.random())
-let searchDateRes = ref('')
-const monthValue = defineModel<string>('monthValue') 
-const yearValue = defineModel('yearValue')
-// let date = ref(new Date(`${yearValue.value}-${monthValue.value-1}-1`))
+import HeaderComponent from "./components/HeaderComponent.vue";
+import CalendarTable from "./components/CalendarTable.vue";
+import TodoElement from "./components/TodoElement.vue";
+import { ref } from "vue";
+const random = ref(Math.random());
 
-const generateCalendarFunc = () =>{
-    searchDateRes.value = months.value[+(monthValue.value as string)-1] +', '+ yearValue.value
-    let date = new Date(`${monthValue.value}-1-${yearValue.value}`)
-    console.log(date)
-}
-
-let months = ref(['january','february','march','april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'])
 let images = ref([
   { id: 0, src: "durov.webp", alt: "durov", isVisible: "block" },
   { id: 1, src: "lomonosov.webp", alt: "lomonosov", isVisible: "none" },
   { id: 2, src: "pushkin.webp", alt: "pushkin", isVisible: "none" },
-])
-let currentSlide = 0
-let imagesSize = images.value.length
+]);
+let currentSlide = 0;
+let imagesSize = images.value.length;
 
 const clickLeft = () => {
-  currentSlide = (currentSlide - 1 + imagesSize) % imagesSize
-  resultOfSlider()
-}
+  currentSlide = (currentSlide - 1 + imagesSize) % imagesSize;
+  resultOfSlider();
+};
 const clickRight = () => {
-  currentSlide = (currentSlide + 1) % imagesSize // после последней пикчи переключается на первый
-  resultOfSlider()
-}
+  currentSlide = (currentSlide + 1) % imagesSize; // после последней пикчи переключается на первый
+  resultOfSlider();
+};
 const resultOfSlider = () => {
   for (let el of images.value) {
-    el.isVisible = el.id == currentSlide ? "block" : "none"
+    el.isVisible = el.id == currentSlide ? "block" : "none";
   }
-}
+};
 
 const todos = ref([
   { text: "анжуманя делат" },
   { text: "прес качат" },
   { text: "бегит" },
-])
+]);
 </script>
 
 <style scoped>
-.calendarInfo{
+.calendarInfo {
   margin-top: 50px;
 }
 .flex {

@@ -23,15 +23,17 @@
     <button @click="clickRight">👉</button>
   </div>
 
-<CalendarTable></CalendarTable>
-  
+  <CalendarTable></CalendarTable>
+  <ForecastTable></ForecastTable>
 </template>
 
 <script setup lang="ts">
 import HeaderComponent from "./components/HeaderComponent.vue";
 import CalendarTable from "./components/CalendarTable.vue";
 import TodoElement from "./components/TodoElement.vue";
+import ForecastTable from "./components/ForecastTable.vue";
 import { ref } from "vue";
+
 const random = ref(Math.random());
 
 let images = ref([
@@ -64,9 +66,7 @@ const todos = ref([
 </script>
 
 <style scoped>
-.calendarInfo {
-  margin-top: 50px;
-}
+
 .flex {
   display: flex;
   gap: 20px;
@@ -93,7 +93,6 @@ h1 {
 }
 </style>
 // https://v3.ru.vuejs.org/ru/guide/introduction.html#декларативная-отрисовка // Создать
-html-страницу, на которой пользователь может вве- // сти номер месяца, год, и получить
-календарь на указанный месяц. // Календарь можно генерировать с помощью таблицы. Начальный
-// день недели всегда должен быть понедельник. //
-https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2Fu2hokqg7m6Lf8XzSUQmFzEzsNa0rcHNd3HsfXplhaVeFoa32FakalGYWc30LL1EAq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2FJS%2F%D0%94%D0%97%2FJS_DZ_Modul_4_Week_13_1532340649.pdf&name=JS_DZ_Modul_4_Week_13_1532340649.pdf&nosw=1
+// Создать html-страницу с блоками информации, которые от- // крываются по щелчку на
+заголовок. В один момент времени может // быть развернут только один блок информации. //
+https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2Fu2hokqg7m6Lf8XzSUQmFzEzsNa0rcHNd3HsfXplhaVeFoa32FakalGYWc30LL1EAq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2FJS%2F%D0%94%D0%97%2FJS_DZ_Modul_4_Week_13_1532340649.pdf&name=JS_DZ_Modul_4_Week_13_1532340649.pdf

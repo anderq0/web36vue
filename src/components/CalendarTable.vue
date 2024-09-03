@@ -23,8 +23,8 @@
       </thead>
 
       <tbody>
-        <tr v-for="(week, index) in calendar" :key="index">
-          <td v-for="(day, idx) in week" :key="idx">{{ day }}</td>
+        <tr v-for="week in calendar">
+          <td v-for="day in week">{{ day }}</td>
         </tr>
       </tbody>
     </table>

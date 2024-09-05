@@ -24,7 +24,32 @@
   </div>
 
   <CalendarTable></CalendarTable>
-  <ForecastTable></ForecastTable>
+  <!-- <ForecastTable></ForecastTable> -->
+
+  <div class="fontManager flex fdc jcc aic">
+    <div class="chooseAnswer flex">
+      <label for="checkboxBold">Bold</label>
+      <input v-model="boldModel" type="checkbox" />
+      <label for="checkboxItalic">Italic</label>
+      <input v-model="italicsModel" type="checkbox" />
+      <label for="checkboxUnderlined">Underlined</label>
+      <input v-model="underlinedModel" type="checkbox" />
+
+      <label for="radioLeft">Left</label>
+      <input v-model="radioLeftModel" type="radio"/>
+      <label for="radioRight">Right</label>
+      <input v-model="radioRightModel" type="radio"/>
+      <label for="radioJustify">Justify</label>
+      <input v-model="radioJustifyModel" type="radio"/>
+
+    </div>
+
+    <textarea v-model="inputTextManagerModel" class="inputTextManager"></textarea>
+    <button @click="resTextManager">Show text</button>
+    <div class="textManagerResultDiv flex">
+      <p :style="stylesRes">{{ textManagerResult }}</p>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -34,6 +59,29 @@ import TodoElement from "./components/TodoElement.vue";
 import ForecastTable from "./components/ForecastTable.vue";
 import { ref } from "vue";
 
+const radioLeftModel=  defineModel('radioLeftModel')
+const radioRightModel=  defineModel('radioRightModel')
+const radioJustifyModel=  defineModel('radioJustifyModel')
+const textManagerResult = ref("");
+const underlinedModel = defineModel("underlinedModel");
+const boldModel = defineModel("boldModel");
+const italicsModel = defineModel("italicsModel");
+const inputTextManagerModel = defineModel("inputTextManagerModel");
+const stylesRes = ref("");
+const resTextManager = () => {
+  textManagerResult.value = inputTextManagerModel.value
+  stylesRes.value = "";
+  if (underlinedModel.value == true) {
+    stylesRes.value += "text-decoration: underline;";
+  }
+  if (boldModel.value == true) {
+    stylesRes.value += "font-weight: bold;";
+  }
+  if (italicsModel.value == true) {
+    stylesRes.value += "font-style: italic;";
+  }
+  console.log(radioJustifyModel.value)
+};
 const random = ref(Math.random());
 
 let images = ref([
@@ -66,7 +114,16 @@ const todos = ref([
 </script>
 
 <style scoped>
-
+.textManagerResultDiv {
+  background-color: rgb(59 59 59);
+  height: 200px;
+  width: 600px;
+}
+.inputTextManager {
+  height: 200px;
+  width: 600px;
+  resize: none;
+}
 .flex {
   display: flex;
   gap: 20px;

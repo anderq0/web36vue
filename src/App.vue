@@ -36,19 +36,49 @@
       <input v-model="underlinedModel" type="checkbox" />
 
       <label for="radioLeft">Left</label>
-      <input v-model="radioLeftModel" type="radio"/>
-      <label for="radioRight">Right</label>
-      <input v-model="radioRightModel" type="radio"/>
+      <input
+        checked
+        name="checkboxes"
+        id="left"
+        value="justify-content:flex-start;"
+        v-model="radioModel"
+        type="radio"
+      />
       <label for="radioJustify">Justify</label>
-      <input v-model="radioJustifyModel" type="radio"/>
-
+      <input
+        name="checkboxes"
+        id="justify"
+        value="justify-content: center;"
+        v-model="radioModel"
+        type="radio"
+      />
+      <label for="radioRight">Right</label>
+      <input
+        name="checkboxes"
+        id="right"
+        value="justify-content: flex-end;"
+        v-model="radioModel"
+        type="radio"
+      />
     </div>
 
     <textarea v-model="inputTextManagerModel" class="inputTextManager"></textarea>
     <button @click="resTextManager">Show text</button>
-    <div class="textManagerResultDiv flex">
-      <p :style="stylesRes">{{ textManagerResult }}</p>
-    </div>
+    <textarea readonly class="textManagerResultDiv" :style="stylesRes">{{
+      textManagerResult
+    }}</textarea>
+  </div>
+
+  <!-- <p :style="stylesRes">{{ textManagerResult }}</p> -->
+  <hr />
+  <p>Memory Game</p>
+  <div class="memoryGame flex">
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame"></div>
+    <div class="frame"></div>
   </div>
 </template>
 
@@ -56,20 +86,21 @@
 import HeaderComponent from "./components/HeaderComponent.vue";
 import CalendarTable from "./components/CalendarTable.vue";
 import TodoElement from "./components/TodoElement.vue";
-import ForecastTable from "./components/ForecastTable.vue";
+// import ForecastTable from "./components/ForecastTable.vue";
 import { ref } from "vue";
 
-const radioLeftModel=  defineModel('radioLeftModel')
-const radioRightModel=  defineModel('radioRightModel')
-const radioJustifyModel=  defineModel('radioJustifyModel')
-const textManagerResult = ref("");
+const radioModel = defineModel("radioLeftModel");
+// const radioModelR=  defineModel('radioLeftModelR')
+// const radioModelJ=  defineModel('radioLeftModelJ')
+const textManagerResult = ref("" as string | undefined);
 const underlinedModel = defineModel("underlinedModel");
 const boldModel = defineModel("boldModel");
 const italicsModel = defineModel("italicsModel");
-const inputTextManagerModel = defineModel("inputTextManagerModel");
+const inputTextManagerModel = defineModel<string>("inputTextManagerModel");
 const stylesRes = ref("");
+const direction = ref("");
 const resTextManager = () => {
-  textManagerResult.value = inputTextManagerModel.value
+  textManagerResult.value = inputTextManagerModel.value;
   stylesRes.value = "";
   if (underlinedModel.value == true) {
     stylesRes.value += "text-decoration: underline;";
@@ -80,7 +111,7 @@ const resTextManager = () => {
   if (italicsModel.value == true) {
     stylesRes.value += "font-style: italic;";
   }
-  console.log(radioJustifyModel.value)
+  direction.value = radioModel.value;
 };
 const random = ref(Math.random());
 
@@ -114,13 +145,20 @@ const todos = ref([
 </script>
 
 <style scoped>
+.frame {
+  background-color: aliceblue;
+  width: 50px;
+  height: 50px;
+}
 .textManagerResultDiv {
   background-color: rgb(59 59 59);
   height: 200px;
   width: 600px;
+  font-size: 20px;
 }
 .inputTextManager {
   height: 200px;
+  font-size: 20px;
   width: 600px;
   resize: none;
 }

@@ -28,45 +28,49 @@
 
   <div class="fontManager flex fdc jcc aic">
     <div class="chooseAnswer flex">
-      <label for="checkboxBold">Bold</label>
-      <input v-model="boldModel" type="checkbox" />
-      <label for="checkboxItalic">Italic</label>
-      <input v-model="italicsModel" type="checkbox" />
-      <label for="checkboxUnderlined">Underlined</label>
-      <input v-model="underlinedModel" type="checkbox" />
+      <div class="rovniedivi">
+        <label for="checkboxBold">Bold</label>
+        <input v-model="boldModel" type="checkbox" />
+        <label for="checkboxItalic">Italic</label>
+        <input v-model="italicsModel" type="checkbox" />
+        <label for="checkboxUnderlined">Underlined</label>
+        <input v-model="underlinedModel" type="checkbox" />
+      </div>
 
-      <label for="radioLeft">Left</label>
-      <input
-        checked
-        name="checkboxes"
-        id="left"
-        value="justify-content:flex-start;"
-        v-model="radioModel"
-        type="radio"
-      />
-      <label for="radioJustify">Justify</label>
-      <input
-        name="checkboxes"
-        id="justify"
-        value="justify-content: center;"
-        v-model="radioModel"
-        type="radio"
-      />
-      <label for="radioRight">Right</label>
-      <input
-        name="checkboxes"
-        id="right"
-        value="justify-content: flex-end;"
-        v-model="radioModel"
-        type="radio"
-      />
+      <div class="rovniedivi">
+        <label for="radioLeft">Left</label>
+        <input
+          name="checkboxes"
+          id="left"
+          value="text-align: start;"
+          v-model="radioModel"
+          type="radio"
+        />
+        <label for="radioJustify">Justify</label>
+        <input
+          checked
+          name="checkboxes"
+          id="justify"
+          value="text-align: center;"
+          v-model="radioModel"
+          type="radio"
+        />
+        <label for="radioRight">Right</label>
+        <input
+          name="checkboxes"
+          id="right"
+          value="text-align: end;"
+          v-model="radioModel"
+          type="radio"
+        />
+      </div>
     </div>
 
     <textarea v-model="inputTextManagerModel" class="inputTextManager"></textarea>
     <button @click="resTextManager">Show text</button>
-    <textarea readonly class="textManagerResultDiv" :style="stylesRes">{{
-      textManagerResult
-    }}</textarea>
+    <div class="flex">
+      <div class="textManagerResultDiv" :style="stylesRes">{{ textManagerResult }}</div>
+    </div>
   </div>
 
   <!-- <p :style="stylesRes">{{ textManagerResult }}</p> -->
@@ -90,15 +94,12 @@ import TodoElement from "./components/TodoElement.vue";
 import { ref } from "vue";
 
 const radioModel = defineModel("radioLeftModel");
-// const radioModelR=  defineModel('radioLeftModelR')
-// const radioModelJ=  defineModel('radioLeftModelJ')
 const textManagerResult = ref("" as string | undefined);
 const underlinedModel = defineModel("underlinedModel");
 const boldModel = defineModel("boldModel");
 const italicsModel = defineModel("italicsModel");
 const inputTextManagerModel = defineModel<string>("inputTextManagerModel");
 const stylesRes = ref("");
-const direction = ref("");
 const resTextManager = () => {
   textManagerResult.value = inputTextManagerModel.value;
   stylesRes.value = "";
@@ -111,7 +112,8 @@ const resTextManager = () => {
   if (italicsModel.value == true) {
     stylesRes.value += "font-style: italic;";
   }
-  direction.value = radioModel.value;
+  stylesRes.value += radioModel.value;
+  console.log(radioModel.value);
 };
 const random = ref(Math.random());
 
@@ -145,6 +147,11 @@ const todos = ref([
 </script>
 
 <style scoped>
+.rovniedivi {
+  display: flex;
+  gap: 10px;
+  margin-right: 30px;
+}
 .frame {
   background-color: aliceblue;
   width: 50px;

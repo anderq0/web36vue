@@ -8,7 +8,9 @@
         <p class="writingWeatherPic">{{ data.current.weather_descriptions[0] }}</p>
       </div>
       <div>
-        <p class="anotherInfo"><b>{{ data.location.localtime }}</b></p>
+        <p class="anotherInfo">
+          <b>{{ data.location.localtime }}</b>
+        </p>
         <p class="anotherInfo"><b>wind:</b> {{ data.current.wind_speed }} km/h</p>
         <p class="anotherInfo"><b>precip</b>: {{ data.current.precip }} mm</p>
         <p class="anotherInfo"><b>pressure</b>: {{ data.current.pressure }} mb</p>
@@ -81,4 +83,5 @@ img {
 // https://v3.ru.vuejs.org/ru/guide/introduction.html#декларативная-отрисовка // Создать
 // Создать html-страницу с блоками информации, которые от- // крываются по щелчку на
 заголовок. В один момент времени может // быть развернут только один блок информации. //
-// https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2Fu2hokqg7m6Lf8XzSUQmFzEzsNa0rcHNd3HsfXplhaVeFoa32FakalGYWc30LL1EAq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2FJS%2F%D0%94%D0%97%2FJS_DZ_Module_5_Week_14_1537344025.pdf&name=JS_DZ_Module_5_Week_14_1537344025.pdf
+//
+https://docs.yandex.ru/docs/view?url=ya-disk-public%3A%2F%2Fu2hokqg7m6Lf8XzSUQmFzEzsNa0rcHNd3HsfXplhaVeFoa32FakalGYWc30LL1EAq%2FJ6bpmRyOJonT3VoXnDag%3D%3D%3A%2FJS%2F%D0%94%D0%97%2FJS_DZ_Module_5_Week_14_1537344025.pdf&name=JS_DZ_Module_5_Week_14_1537344025.pdf

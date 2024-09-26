@@ -3,7 +3,7 @@
   <button @click="resetGame">Play</button>
 
   <div class="memoryGame flex fdc aic">
-    <div class="flex ">
+    <div class="flex">
       <div @click="decideVisibility('first', '7peak')">
         <img
           v-if="visibilityMeaning.first"
@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div class="flex">
+    <div class="flex cringe">
       <div @click="decideVisibility('fifth', 'dama')">
         <img
           v-if="visibilityMeaning.fifth"
@@ -85,7 +85,20 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+const memoryBlockList = ref([
+  {classFront:"frame frontPic",src:"muzhik.png",alt:"muzhik", backPic:"frame backPic", id:1},
+  {classFront:"frame frontPic",src:"muzhik.png",alt:"muzhik", backPic:"frame backPic",id:2 },
 
+  {classFront:"frame frontPic",src:"dama.jpeg",alt:"dama", backPic:"frame backPic", id:3},
+  {classFront:"frame frontPic",src:"dama.jpeg",alt:"dama", backPic:"frame backPic", id:4},
+
+  {classFront:"frame frontPic",src:"9bub.png",alt:"9bub", backPic:"frame backPic",id:5},
+  {classFront:"frame frontPic",src:"9bub.png",alt:"9bub", backPic:"frame backPic",id:6},
+
+  {classFront:"frame frontPic",src:"7peak.jpg",alt:"7peak", backPic:"frame backPic",id:7},
+  {classFront:"frame frontPic",src:"7peak.jpg",alt:"7peak", backPic:"frame backPic",id:8},
+])
+console.log(memoryBlockList.value[0])
 const visibilityMeaning = ref({
   first: false,
   second: false,
@@ -133,7 +146,7 @@ const resetGame = () => {
 </script>
 
 <style scoped>
-@-webkit-keyframes pulsate {
+/* @-webkit-keyframes pulsate {
  50% { color: #fff; text-shadow: 0 -1px rgba(0,0,0,.3), 0 0 5px #ffd, 0 0 8px #fff; }
 }
 @keyframes pulsate {
@@ -144,11 +157,15 @@ h1 {
   color: #535bf2;
   text-shadow: 0 -1px rgba(0,0,0,.1);
   -webkit-animation: pulsate-27379236 2.2s cubic-bezier(0.34, -0.3, 1, 0.93) infinite;
+} */
+.cringe {
+  position: fixed;
+  top: 500px;
 }
 .frame {
   background-color: aliceblue;
-  width: 100px;
   height: 120px;
+  width: 100px;
 }
 .flex {
   margin-top: 30px;

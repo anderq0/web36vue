@@ -8,11 +8,11 @@
     <div v-else>А уже нет</div>
   </div>
 
-  <ol>
+  <!-- <ol>
     <template v-for="todo in todos">
       <TodoElement :todo="todo"></TodoElement>
     </template>
-  </ol>
+  </ol> -->
   <div class="gallery flex aic jcc">
     <button @click="clickLeft">👈</button>
 
@@ -25,19 +25,21 @@
 
   <CalendarTable></CalendarTable>
   <FontManager></FontManager>
-  
- 
+
+  <h1 @click="counterStore.increment">{{counterStore.count}}</h1>
 </template>
 
 <script setup lang="ts">
 import HeaderComponent from "../components/HeaderComponent.vue";
 import CalendarTable from "../components/CalendarTable.vue";
-// import ToDoElement from '../components/TodoElement.vue'
+//import ToDoElement from '../components/TodoElement.vue';
+import { useCounterStore } from '../source/counterCompos.ts';
 import FontManager from "../components/FontManager.vue";
 // import MemoryGame from "../components/MemoryGame.vue";
 // import ForecastTable from "./components/ForecastTable.vue";
 import { ref } from "vue";
 
+const counterStore = useCounterStore()
 
 const random = ref(Math.random());
 

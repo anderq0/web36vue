@@ -1,4 +1,5 @@
 <template>
+  <p>X:{{ x}}   Y:{{ y }}</p>
   <HeaderComponent>
     <p>𓆝</p>
     <p>тэг</p>
@@ -37,8 +38,10 @@ import { useCounterStore } from '../source/counterCompos.ts';
 import FontManager from "../components/FontManager.vue";
 // import MemoryGame from "../components/MemoryGame.vue";
 // import ForecastTable from "./components/ForecastTable.vue";
+import {useMouse} from '../composables/mouse.ts'
 import { ref } from "vue";
 
+const {x,y} = useMouse()
 const counterStore = useCounterStore()
 
 const random = ref(Math.random());
@@ -48,6 +51,7 @@ let images = ref([
   { id: 1, src: "/web36vue/lomonosov.webp", alt: "lomonosov", isVisible: "none" },
   { id: 2, src: "/web36vue/pushkin.webp", alt: "pushkin", isVisible: "none" },
 ]);
+
 let currentSlide = 0;
 let imagesSize = images.value.length;
 
